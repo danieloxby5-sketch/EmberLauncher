@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ember Launcher</title>
+    <link rel="stylesheet" href="./assets/google.font.css">
+    <link rel="stylesheet" href="./assets/preload.css">
+    <script src="http://launcher/flights"></script>
+    <style>
+        .unloaded {
+            background: radial-gradient(ellipse at 50% 42%, rgba(240, 120, 50, .14), transparent 48%), #0d0d0f;
+            height: 100vh;
+            width: 100vw;
+            min-width: 100vw;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            overflow: hidden;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        .ember-splash { display:flex; flex-direction:column; align-items:center; gap:14px; color:#f07832; animation: ember-in .65s ease both; }
+        .ember-mark { width:58px; height:58px; display:grid; place-items:center; border:1px solid rgba(240,120,50,.32); border-radius:18px; background:linear-gradient(145deg,rgba(240,120,50,.16),rgba(255,255,255,.025)); box-shadow:0 0 48px rgba(240,120,50,.12), inset 0 1px rgba(255,255,255,.08); }
+        .ember-mark svg { width:34px; height:34px; }
+        .ember-splash-name { color:#f4eee9; font:800 17px/1.1 -apple-system,BlinkMacSystemFont,sans-serif; letter-spacing:.22em; }
+        .ember-splash-name span { color:#f07832; margin-left:5px; }
+        .ember-splash-line { width:130px; height:2px; overflow:hidden; border-radius:9px; background:rgba(255,255,255,.09); }
+        .ember-splash-line i { display:block; width:42%; height:100%; border-radius:9px; background:linear-gradient(90deg,#d94e21,#ffad68); animation: ember-load 1.35s ease-in-out infinite; }
+        .ember-splash-caption { color:#77716d; font:600 9px/1 -apple-system,BlinkMacSystemFont,sans-serif; letter-spacing:.28em; }
+        @keyframes ember-load { from { transform:translateX(-110%); } to { transform:translateX(250%); } }
+        @keyframes ember-in { from { opacity:0; transform:translateY(8px) scale(.98); } to { opacity:1; transform:translateY(0) scale(1); } }
+
+        .ember-sparks { position:fixed; inset:0; overflow:hidden; pointer-events:none; }
+        .ember-sparks i { position:absolute; bottom:-12px; left:var(--x); width:var(--s); height:var(--s); border-radius:50%; background:radial-gradient(circle,#ffd2a8 0%,#ff9b5b 45%,rgba(240,120,50,0) 72%); opacity:0; animation: ember-rise var(--d) linear var(--delay) infinite; }
+        @keyframes ember-rise {
+            0% { transform:translate(0,0) scale(1); opacity:0; }
+            12% { opacity:.9; }
+            100% { transform:translate(var(--drift),-108vh) scale(.3); opacity:0; }
+        }
+        .ember-mark { animation: ember-breathe 2.6s ease-in-out infinite; }
+        @keyframes ember-breathe { 0%,100% { box-shadow:0 0 48px rgba(240,120,50,.12), inset 0 1px rgba(255,255,255,.08); } 50% { box-shadow:0 0 72px rgba(240,120,50,.3), inset 0 1px rgba(255,255,255,.08); } }
+        @media (prefers-reduced-motion: reduce) { .ember-sparks i, .ember-mark, .unloaded { animation:none; } }
+    </style>
+</head>
+
+<body class="overflow-hidden unloaded">
+    <div id="app">
+        <div class="ember-sparks" aria-hidden="true"><i style="--x:45%;--s:4px;--d:7.3s;--delay:-0.4s;--drift:67px"></i><i style="--x:16%;--s:5px;--d:8.1s;--delay:-7.3s;--drift:-16px"></i><i style="--x:8%;--s:3px;--d:7.5s;--delay:-0.6s;--drift:-47px"></i><i style="--x:74%;--s:6px;--d:5.8s;--delay:-4.5s;--drift:-13px"></i><i style="--x:84%;--s:3px;--d:8.1s;--delay:-3.2s;--drift:-14px"></i><i style="--x:9%;--s:4px;--d:6.8s;--delay:-1.2s;--drift:-40px"></i><i style="--x:77%;--s:5px;--d:8.0s;--delay:-5.5s;--drift:-44px"></i><i style="--x:78%;--s:4px;--d:7.2s;--delay:-4.4s;--drift:-54px"></i><i style="--x:76%;--s:3px;--d:8.3s;--delay:-4.0s;--drift:66px"></i><i style="--x:58%;--s:5px;--d:7.6s;--delay:-7.4s;--drift:22px"></i><i style="--x:42%;--s:4px;--d:9.1s;--delay:-5.6s;--drift:-8px"></i><i style="--x:14%;--s:5px;--d:7.9s;--delay:-7.0s;--drift:44px"></i><i style="--x:40%;--s:3px;--d:6.0s;--delay:-3.3s;--drift:17px"></i><i style="--x:23%;--s:6px;--d:7.4s;--delay:-7.7s;--drift:-51px"></i><i style="--x:75%;--s:5px;--d:7.0s;--delay:-2.8s;--drift:57px"></i><i style="--x:78%;--s:6px;--d:5.8s;--delay:-0.7s;--drift:-1px"></i><i style="--x:64%;--s:3px;--d:5.8s;--delay:-5.6s;--drift:44px"></i><i style="--x:40%;--s:6px;--d:9.5s;--delay:-2.8s;--drift:48px"></i><i style="--x:49%;--s:4px;--d:8.2s;--delay:-3.9s;--drift:-15px"></i><i style="--x:40%;--s:4px;--d:8.8s;--delay:-3.2s;--drift:57px"></i><i style="--x:14%;--s:4px;--d:7.5s;--delay:-4.4s;--drift:-35px"></i><i style="--x:59%;--s:5px;--d:8.7s;--delay:-7.9s;--drift:27px"></i></div>
+        <div class="ember-splash" role="status" aria-label="Ember Launcher loading">
+          <div class="ember-mark"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M36.8 4.5c2.2 12.2-5.1 15.1-3.2 24.1 1.1 5.2 5.1 7.4 8.1 4.3 2.3-2.4 2.4-6.1 1.3-9.3 10.4 7.6 14.2 17.2 10.7 26.1C50.4 59.2 41.7 63 31.9 63 18.1 63 8 54.1 8 41.2c0-9.7 5.5-18.2 16.5-25.5-1.4 9.2 1.3 13.2 4.6 13.2 5.7 0 3.1-12.8 7.7-24.4Z" fill="currentColor"/><path d="M32.4 39.2c-5.9 6.4-7.2 10.1-4.9 14 2.4 4.1 8.7 4.7 12.1 1.1 3.8-4 .8-10.5-7.2-15.1Z" fill="#17100c" opacity=".9"/></svg></div>
+          <div class="ember-splash-name">EMBER<span>LAUNCHER</span></div>
+          <div class="ember-splash-line"><i></i></div>
+          <div class="ember-splash-caption">IGNITE YOUR WORLD</div>
+        </div>
+    </div>
+    <script type="module" src="./windows/main/index.ts"></script>
+</body>
+
+</html>

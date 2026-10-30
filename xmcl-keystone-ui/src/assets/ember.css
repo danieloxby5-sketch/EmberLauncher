@@ -1,0 +1,229 @@
+/* ==========================================================================
+   EMBER LAUNCHER — theme layer
+   Charcoal surfaces, ember-orange actions, a little glow. Loaded after
+   common.css (see windows/main/App.vue). Dark-mode focused: the look depends
+   on dark surfaces; light mode keeps the stock Vuetify look with the ember
+   primary color from composables/theme.ts.
+   ========================================================================== */
+
+:root {
+  --ember-bg: #0d0d0f;
+  --ember-panel: #161618;
+  --ember-panel-2: #1b1b1e;
+  --ember-line: rgba(255, 255, 255, 0.07);
+  --ember-orange: #f07832;
+  --ember-orange-hot: #ff9b5b;
+  --ember-orange-deep: #d94e21;
+  --ember-glow: rgba(240, 120, 50, 0.22);
+  --highlight-color: var(--ember-orange);
+}
+
+html, body, #app {
+  scrollbar-color: rgba(240, 120, 50, 0.38) transparent;
+}
+
+::selection {
+  background: rgba(240, 120, 50, 0.38);
+  color: #fff;
+}
+
+/* ---- App shell -------------------------------------------------------- */
+
+.dark .v-application {
+  background:
+    radial-gradient(ellipse at 78% -6%, rgba(240, 120, 50, 0.07), transparent 36%),
+    radial-gradient(ellipse at 6% 108%, rgba(217, 78, 33, 0.05), transparent 40%),
+    var(--ember-bg) !important;
+}
+
+.dark { --icon-color-hovered: var(--ember-orange-hot); }
+
+/* thin glowing line along the very top of the window */
+.dark .v-application::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 1px;
+  z-index: 9999;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(240, 120, 50, 0.55) 30%, rgba(255, 155, 91, 0.7) 50%, rgba(240, 120, 50, 0.55) 70%, transparent);
+}
+
+/* ---- Surfaces --------------------------------------------------------- */
+
+.dark .v-card,
+.dark .v-sheet:not(.v-system-bar) {
+  border-color: var(--ember-line);
+}
+
+.dark .v-card {
+  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.02), transparent 60%);
+}
+
+.dark .v-dialog > .v-overlay__content > .v-card {
+  border: 1px solid rgba(240, 120, 50, 0.14);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5), 0 0 60px rgba(240, 120, 50, 0.04);
+}
+
+.dark .v-navigation-drawer {
+  background: linear-gradient(180deg, #141416 0%, #0f0f11 100%) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.dark .v-navigation-drawer .v-list-item--active {
+  background: rgba(240, 120, 50, 0.11);
+  border-radius: 12px;
+}
+
+.dark .v-menu > .v-overlay__content > .v-list,
+.dark .v-menu > .v-overlay__content > .v-card {
+  border: 1px solid var(--ember-line);
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.5);
+}
+
+/* ---- Controls --------------------------------------------------------- */
+
+.dark .v-btn--variant-flat.v-btn--color-primary,
+.dark .v-btn--variant-elevated.v-btn--color-primary {
+  background: linear-gradient(135deg, var(--ember-orange), var(--ember-orange-deep)) !important;
+  color: #fff;
+  box-shadow: 0 6px 22px rgba(240, 120, 50, 0.2);
+  transition: box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.dark .v-btn--variant-flat.v-btn--color-primary:hover,
+.dark .v-btn--variant-elevated.v-btn--color-primary:hover {
+  box-shadow: 0 8px 30px rgba(240, 120, 50, 0.34);
+  filter: brightness(1.06);
+}
+
+.dark .v-btn--variant-text.v-btn--color-primary:hover,
+.dark .v-list-item--active,
+.dark .v-tab--selected,
+.dark .text-primary {
+  color: var(--ember-orange-hot) !important;
+}
+
+.dark .v-field--focused .v-field__outline {
+  --v-field-border-opacity: 0.9;
+}
+
+.dark .v-tabs-slider {
+  background: linear-gradient(90deg, var(--ember-orange), var(--ember-orange-hot));
+}
+
+.dark .v-progress-linear__determinate,
+.dark .v-progress-linear__indeterminate .long,
+.dark .v-progress-linear__indeterminate .short {
+  background: linear-gradient(90deg, var(--ember-orange-deep), var(--ember-orange-hot)) !important;
+}
+
+.dark .v-chip--variant-tonal.v-chip--color-primary,
+.dark .v-chip--variant-flat.v-chip--color-primary {
+  background: rgba(240, 120, 50, 0.16) !important;
+  color: var(--ember-orange-hot) !important;
+}
+
+.dark .v-selection-control--dirty .v-selection-control__input > .v-icon {
+  color: var(--ember-orange);
+}
+
+.dark .v-tooltip > .v-overlay__content {
+  background: #1d1d20;
+  border: 1px solid var(--ember-line);
+  color: #eae3de;
+}
+
+/* ---- Home welcome banner (used in views/Home.vue) ---------------------- */
+
+.ember-welcome {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 104px;
+  margin: 18px 8px 22px;
+  padding: 22px 26px;
+  overflow: hidden;
+  border: 1px solid rgba(240, 120, 50, 0.18);
+  border-radius: 18px;
+  background:
+    radial-gradient(ellipse at 86% 50%, rgba(240, 120, 50, 0.14), transparent 40%),
+    linear-gradient(115deg, #191719, #141416 58%, #1b1512);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.2), inset 0 1px rgba(255, 255, 255, 0.035);
+}
+
+.ember-welcome::after {
+  content: "";
+  position: absolute;
+  right: -44px;
+  top: -92px;
+  width: 230px;
+  height: 230px;
+  border: 1px solid rgba(240, 120, 50, 0.12);
+  border-radius: 50%;
+  box-shadow: 0 0 0 24px rgba(240, 120, 50, 0.025), 0 0 0 48px rgba(240, 120, 50, 0.018);
+  pointer-events: none;
+}
+
+.ember-welcome-brand { display: flex; align-items: center; gap: 16px; min-width: 0; }
+
+.ember-welcome-mark {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  flex: none;
+  border: 1px solid rgba(255, 153, 91, 0.3);
+  border-radius: 14px;
+  background: linear-gradient(145deg, rgba(240, 120, 50, 0.2), rgba(240, 120, 50, 0.045));
+  color: #ff9654;
+  font-size: 25px;
+  box-shadow: 0 0 28px rgba(240, 120, 50, 0.12);
+  animation: ember-flicker 3.2s ease-in-out infinite;
+}
+
+.ember-welcome-eyebrow { margin-bottom: 5px; color: #9b8e86; font-size: 9px; font-weight: 700; letter-spacing: 0.24em; }
+.ember-welcome-title { color: #f4eee9; font-size: 19px; font-weight: 850; letter-spacing: 0.17em; line-height: 1.2; }
+.ember-welcome-title span { color: var(--ember-orange); }
+
+.ember-welcome-meta {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #a49a94;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
+.ember-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ember-orange);
+  box-shadow: 0 0 10px rgba(240, 120, 50, 0.8);
+  animation: ember-flicker 2.4s ease-in-out infinite;
+}
+
+.ember-meta-divider { width: 1px; height: 13px; margin: 0 4px; background: rgba(255, 255, 255, 0.14); }
+
+@keyframes ember-flicker {
+  0%, 100% { opacity: 1; }
+  45% { opacity: 0.78; }
+  60% { opacity: 1; }
+  78% { opacity: 0.88; }
+}
+
+@media (max-width: 700px) {
+  .ember-welcome { align-items: flex-start; flex-direction: column; padding: 18px; }
+  .ember-welcome-meta { flex-wrap: wrap; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ember-welcome-mark, .ember-status-dot { animation: none; }
+}
